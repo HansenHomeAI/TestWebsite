@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>zonne.ai</title>
+<style>
+  /* Global reset / base styling */
+  * {
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box;
+  }
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+  }
+  .hidden { display: none; }
+
+  /* --------------------------
+     HEADER
+     -------------------------- */
+  .header {
+    position: fixed;
+    top: 20px;  
+    left: 50%; 
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    height: 50px;
+    border-radius: 25px;
+    z-index: 999;
+    box-sizing: border-box;
+    padding: 7px; 
+    overflow: hidden;
+
+    /* Blur and gradient outline */
+    background: rgba(#FFFFFF, 0.15);
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
+
+    /* Animate expansions. We'll expand downward. */
+    transition: height 0.3s ease, padding 0.3s ease, background 0.3s ease,
+                -webkit-backdrop-filter 0.3s ease;
+  }
+  .header::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: inherit;
+    background: linear-gradient(145deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 41%, rgba(255,255,255,0) 57%, rgba(255,255,255,0.4) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 1.4px;
+    pointer-events: none; 
+    z-index: 0; 
+  }
+  .header.expanded {
+    height: 220px;
+    padding-bottom: 20px;
+  }
+
+  .header-top {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -7.2px; /* keeps that subtle top alignment from your existing code */
+    z-index: 1;
+  }
+
+  /* BRAND TEXT (zonne.ai) */
+  .logo {
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    display: flex; 
+    align-items: center;
+    padding: 6px 12px; 
+    line-height: 1.2;  
+  }
+  .logo::before {
+    content: "";
+    position: absolute;
+    inset: 0; 
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.15);
+    z-index: -1;
+    opacity: 0;
+    transform: scale(0.7);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .logo:hover::before {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Toggle icon container (no text). We'll build the + / X from two lines. */
+  .toggle {
+    font-size: 1.5rem;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center;
+    transform-origin: center;
+    transition: transform 0.3s ease, margin 0.3s ease;
+    line-height: 0;
+    margin-right: -5px; /* Nudged to the right edge */
+  }
+  .toggle::before {
+    content: "";
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: -1;
+  }
+  .toggle:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  /* The plus lines */
+  .toggle span {
+    position: absolute;
+    display: block;
+    width: 16px;
+    height: 2.5px;
+    background: #fff;
+    top: 50%;
+    left: 50%;
+    transform-origin: center;
+    transition: transform 0.3s ease;
+  }
+  .toggle span:first-child {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  .toggle span:last-child {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+  .toggle.rotated span:first-child {
+    transform: translate(-50%, -50%) rotate(135deg);
+  }
+  .toggle.rotated span:last-child {
+    transform: translate(-50%, -50%) rotate(225deg);
+  }
+
+  /* NAV LINKS (for small screens / expanded header) */
+  .nav-links {
+    width: 100%;
+    margin-top: 10px; 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 1;
+  }
+  .header.expanded .nav-links {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.2rem;
+    cursor: pointer;
+    position: relative;
+    padding: 6px 12px;
+    margin: 4px 0; 
+    user-select: none;
+  }
+  .nav-links a::before {
+    content: "";
+    position: absolute;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+    inset: 0; 
+    transform: scale(0.7);
+    opacity: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    z-index: -1;
+  }
+  .nav-links a:hover::before {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  /*
+   * DUPLICATE NAV LINKS FOR DESKTOP
+   * Only visible on wide screens.
+   */
+  .nav-links-desktop {
+    display: none; /* Hidden by default */
+    gap: 30px;     /* Spacing between links */
+  }
+  .nav-links-desktop a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.2rem;
+    cursor: pointer;
+    position: relative;
+    padding: 6px 12px;
+    user-select: none;
+  }
+  .nav-links-desktop a::before {
+    content: "";
+    position: absolute;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+    inset: 0; 
+    transform: scale(0.7);
+    opacity: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    z-index: -1;
+  }
+  .nav-links-desktop a:hover::before {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  /* LANDING SECTION & IFRAME (Updated) */
+  #landing {
+    position: relative;
+    /* Fill the browser height so .landing-content can sit above the bottom initially */
+    height: 100vh; 
+    padding: 0 0 60px;  /* Keep your original bottom padding if desired */
+  }
+  /* The iframe acts like a background here, absolutely spanning the entire #landing */
+  .landing-iframe {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* Position the landing content at bottom:20px so it's 20px above the bottom
+     of #landing. It's absolute (not fixed), so it scrolls away as the user scrolls. */
+  .landing-content {
+    position: absolute;
+    bottom: 50px;  
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 750px;
+    padding: 0 15px;
+    pointer-events: auto; 
+    z-index: 2; 
+  }
+  .landing-content h1,
+  .landing-content p {
+    text-shadow: 0 3px 16px rgba(0,0,0,1);
+    text-align: center;  /* Keep your original center alignment */
+  }
+  .landing-content h1 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-size: clamp(1.8rem, 6vw, 2.9rem) !important; 
+    text-align: center; 
+  }
+  .landing-content p {
+    line-height: 1.6;
+    font-weight: 500; 
+    color: #A6A6A6;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  /* CTA 1 (original) */
+  .cta-button {
+    display: inline-block;
+    background: #FF4F00;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 999px;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    position: relative;
+    cursor: pointer;  
+    user-select: none; 
+  }
+  .cta-button::after {
+    content: '';
+    opacity: 0;
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+    width: 6px;
+    height: 6px;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transition: opacity 0.3s ease;
+  }
+  .cta-button:hover {
+    padding-right: 40px;
+  }
+  .cta-button:hover::after {
+    opacity: 1;
+  }
+
+  /* CTA 2 (new) */
+  .cta-button2 {
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 999px;
+    transition: background 0.3s ease;
+    margin-left: 8px;
+    position: relative;
+    cursor: pointer;  
+    user-select: none;
+    border: 2.5px solid #FF4F00;
+    color: #FF4F00; /* Orange text by default */
+    background: transparent;
+    font-size: 1rem;
+  }
+  .cta-button2:hover {
+    background: #FF4F00; 
+    color: #fff;        
+  }
+
+  .cta-button3 {
+    display: inline-block;
+    color: #FF4F00;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 999px;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    position: relative;
+    cursor: pointer;  
+    user-select: none; 
+    border: 2.5px solid #FF4F00;
+  }
+  .cta-button3::after {
+    content: '';
+    opacity: 0;
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+    width: 6px;
+    height: 6px;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transition: opacity 0.3s ease;
+  }
+  .cta-button3:hover {
+    padding-right: 40px;
+  }
+  .cta-button3:hover::after {
+    opacity: 1;
+  }
+
+  /* OTHER SECTIONS (unchanged) */
+  .section {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  /* Put these overrides after your .section definition */
+  #landing.section {
+    max-width: 100% !important;
+    margin: 0 !important;
+    width: 100vw;
+    margin-left: calc(50% - 50vw); 
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  #landing-additional,
+  #landing-more,
+  #pricing,
+  #about,
+  #about-mission,
+  #about-innovation,
+  #create,
+  #create-steps {
+    padding: 200px 20px 60px;
+    position: relative;
+  }
+  .section h1 {
+    font-weight: 500;
+    margin-bottom: 1rem;
+    font-size: 3rem;
+  }
+  .section h2 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+  .section p {
+    line-height: 1.6;
+    font-weight: 400;
+    color: #737373;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  /* Pricing Cards */
+  .pricing-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    margin-top: 80px;
+  }
+  .pricing-card {
+    text-align: center; /* Changed to center align */
+    max-width: 300px;
+  }
+  .pricing-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  .pricing-card p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #ccc;
+    line-height: 1.4;
+  }
+  .pricing-card .price {
+    font-size: 2.4rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  /* Feedback Section */
+  .feedback-section {
+    max-width: 640px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 40px 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .feedback-form {
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+  }
+  .feedback-input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 999px;
+    border: 1px solid #444;
+    background-color: #111;
+    outline: none;
+    font-size: 1rem;
+    color: #ccc;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: #777;
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    z-index: 2;
+  }
+
+  /* Responsive Adjustments (small screens) */
+  @media (max-width: 768px) {
+    .feedback-form {
+      flex-direction: column;
+    }
+    .feedback-input {
+      width: 100%;
+      margin-bottom: 8px;
+    }
+    .cta-button2 {
+      width: 100%;
+      margin-left: 0 !important;
+    }
+  }
+
+  /* Larger screens: use nav-links-desktop, hide small-screen nav */
+  @media (min-width: 700px) {
+    .toggle {
+      display: none !important;
+    }
+    /* Hide small-screen nav */
+    .nav-links {
+      display: none !important;
+    }
+    /* Show desktop nav in a row, right side */
+    .nav-links-desktop {
+      display: flex !important;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    /* Keep the header from expanding on large screens */
+    .header {
+      height: 50px !important;
+      padding-bottom: 0 !important;
+    }
+    .header.expanded {
+      height: 50px !important;
+    }
+  }
+</style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-top">
+      <!-- Logo on the left -->
+      <div class="logo" onclick="showSection('landing')">zonne.ai</div>
+
+      <!-- Desktop nav on the right (hidden by default, visible on wide screens) -->
+      <div class="nav-links-desktop">
+        <a onclick="showSection('pricing')">Pricing</a>
+        <a onclick="showSection('about')">About</a>
+        <a onclick="showSection('create')">Create</a>
+      </div>
+
+      <!-- Toggle (two lines forming +, rotate to ×) only visible on small screens -->
+      <div class="toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <!-- Nav links for small screens (in expanded/collapsed menu) -->
+    <div class="nav-links">
+      <a onclick="showSection('pricing')">Pricing</a>
+      <a onclick="showSection('about')">About</a>
+      <a onclick="showSection('create')">Create</a>
+    </div>
+  </header>
+
+  <!-- LANDING SECTION -->
+  <section class="section" id="landing">
+    <iframe class="landing-iframe" src="https://hansenhomeai.github.io/WebbyDeerKnoll/"></iframe>
+    <div class="landing-content">
+      <h1>Seamless exploration.</h1>
+      <a onclick="showSection('create')" class="cta-button">Create your own</a>
+
+    </div>
+  </section>
+
+  <!-- REMAINING LANDING SECTIONS (unchanged) -->
+  <section class="section" id="landing-additional">
+    <h2>Discover Luxury Properties at a Glance</h2>
+    <p>We’ve distilled the best of modern design aesthetics into our interface. With minimal distractions and effortless navigation, you can dive into rich, detailed visuals that replicate the feeling of physically touring the property.</p>
+    <p>From exclusive city-center penthouses to tranquil country estates, zonne.ai scales seamlessly, ensuring each listing retains its character and allure.</p>
+  </section>
+
+  <section class="section" id="landing-more">
+    <h2>Seamless Experience Across Devices</h2>
+    <p>Whether on a phone, tablet, or 4K monitor, enjoy consistent quality. Our adaptive design ensures your exploration remains fluid, intuitive, and visually stunning, anywhere you are.</p>
+    <p>And as real estate evolves, so do we. Anticipate frequent enhancements, deeper integrations, and cutting-edge tools that place you firmly in command of your property search journey.</p>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="section hidden" id="pricing">
+    <h1>Pricing</h1>
+    <p>Invest in lucidity. Our tiered plans support everyone from independent agents to major brokerages. Differentiate your listings, refine your brand, and step confidently into the future of real estate presentation.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>Starter</h3>
+        <p>Up to 5 property models/month. Ideal for solo agents making their mark.</p>
+        <div class="price">$99/mo</div>
+        <a onclick="showSection('create')" class="cta-button">Get Started</a>
+      </div>
+      <div class="pricing-card">
+        <h3>Professional</h3>
+        <p>20 models/month, priority rendering, and custom branding. Elevate your portfolio effortlessly.</p>
+        <div class="price">$299/mo</div>
+        <a onclick="showSection('create')" class="cta-button">Upgrade Now</a>
+      </div>
+      <div class="pricing-card">
+        <h3>Enterprise</h3>
+        <p>Unlimited models, dedicated support, and AI insights. Ideal for large agencies and developers.</p>
+        <div class="price">Custom</div>
+        <a onclick="showSection('create')" class="cta-button">Contact Us</a>
+      </div>
+    </div>
+    <p>All tiers include ongoing improvements, early access to VR/AR features, and our unwavering commitment to a flawless user experience.</p>
+  </section>
+
+  <!-- About Section -->
+  <section class="section hidden" id="about">
+    <h1>About zonne.ai</h1>
+    <p>zonne.ai was born from a vision to transcend traditional property listings. Melding drone technology with AI, we paint dynamic, interactive portraits of homes. Each model uncovers layers of detail that static images or flat videos can’t capture.</p>
+    <p>We focus on minimalism, authenticity, and empowerment...</p>
+    <!-- Additional About Content -->
+    <p>At zonne.ai, we harness advanced drone technology and proprietary AI to deliver immersive 3D property models that highlight what matters most: location. By capturing every angle from the sky, we seamlessly stitch together breathtaking point clouds that showcase each home’s layout and its surrounding area.</p>
+    <p>Our dedication to a premium and luxury-appealing design aesthetic ensures that both real estate professionals and prospective buyers can experience properties in a visually striking, intuitive interface. This emphasis on high-end presentation differentiates listings and conveys the true essence of each space.</p>
+    <p>As a growing startup, we blend recurring SaaS revenue models with an innovative approach to drone flights, 3D rendering, and AI-driven property insights. Our goal is to lock in partnerships and build a scalable, future-forward platform that continuously adapts to the evolving needs of real estate professionals worldwide.</p>
+  </section>
+
+  <section class="section hidden" id="about-mission">
+    <h2>Our Mission</h2>
+    <p>We believe knowledge fosters confidence...</p>
+  </section>
+
+  <section class="section hidden" id="about-innovation">
+    <h2>Constant Innovation</h2>
+    <p>As we push forward, anticipate features that challenge the status quo...</p>
+  </section>
+
+  <!-- Create Section -->
+  <section class="section hidden" id="create">
+    <h1>Create Your Space</h1>
+    <p>Transform listings with ease. Our streamlined workflow guides you from drone-captured imagery to a 3D model in minutes.</p>
+    <a class="cta-button">Start Creating</a>
+  </section>
+
+  <section class="section hidden" id="create-steps">
+    <h2>Simple Steps to Get Started</h2>
+    <p>1. Capture drone imagery...<br>2. Upload...<br>3. AI stitches 3D model...<br>4. Share...</p>
+  </section>
+
+  <!-- Feedback Section (above footer) -->
+  <div class="feedback-section">
+    <form class="feedback-form" onsubmit="sendFeedback(event)">
+      <input 
+        type="text" 
+        name="feedback" 
+        class="feedback-input" 
+        placeholder="Ways we can improve?">
+      <button type="submit" class="feedback-button cta-button2">Send feedback</button>
+    </form>
+  </div>
+
+  <footer>
+    © 2024 zonne.ai · All rights reserved
+  </footer>
+
+<script>
+  function toggleMenu() {
+    const header = document.querySelector('.header');
+    const toggleBtn = header.querySelector('.toggle');
+    // Expand or collapse
+    header.classList.toggle('expanded');
+    toggleBtn.classList.toggle('rotated');
+  }
+
+  function showSection(sectionId) {
+    const allSections = document.querySelectorAll('section[id]');
+    const header = document.querySelector('.header');
+    const toggleBtn = header.querySelector('.toggle');
+    allSections.forEach(sec => sec.classList.add('hidden'));
+
+    if(sectionId === 'pricing') {
+      document.getElementById('pricing').classList.remove('hidden');
+    } else if(sectionId === 'about') {
+      document.getElementById('about').classList.remove('hidden');
+      document.getElementById('about-mission').classList.remove('hidden');
+      document.getElementById('about-innovation').classList.remove('hidden');
+    } else if(sectionId === 'create') {
+      document.getElementById('create').classList.remove('hidden');
+      document.getElementById('create-steps').classList.remove('hidden');
+    } else {
+      // Default: show landing sections
+      document.getElementById('landing').classList.remove('hidden');
+      document.getElementById('landing-additional').classList.remove('hidden');
+      document.getElementById('landing-more').classList.remove('hidden');
+    }
+
+    // If the header is expanded, close it
+    if (header.classList.contains('expanded')) {
+      header.classList.remove('expanded');
+      toggleBtn.classList.remove('rotated');
+    }
+  }
+
+  function sendFeedback(e) {
+    e.preventDefault();
+    const feedbackInput = document.querySelector('input[name="feedback"]');
+    const feedback = feedbackInput.value.trim();
+    if (!feedback) {
+      alert('Please enter your feedback before sending.');
+      return;
+    }
+
+    const button = document.querySelector('.feedback-button');
+    const originalText = button.textContent;
+    button.textContent = ''; // Clear text
+
+    // Create a check icon
+    const checkSpan = document.createElement('span');
+    checkSpan.textContent = '✓';
+    checkSpan.style.fontSize = '1.2rem';
+    checkSpan.style.display = 'inline-block';
+    checkSpan.style.textAlign = 'center';
+    button.appendChild(checkSpan);
+
+    // Open user's email client
+    window.location.href = `mailto:hello@hansenhome.ai?subject=Feedback&body=${encodeURIComponent(feedback)}`;
+
+    // Clear input
+    feedbackInput.value = '';
+
+    // After 2 seconds, revert the button
+    setTimeout(() => {
+      button.removeChild(checkSpan);
+      button.textContent = originalText;
+    }, 2000);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    showSection('landing');
+
+    // Close the header if clicked outside while expanded
+    document.addEventListener('click', (e) => {
+      const header = document.querySelector('.header');
+      const toggleBtn = header.querySelector('.toggle');
+      if (header.classList.contains('expanded') && !header.contains(e.target)) {
+        header.classList.remove('expanded');
+        toggleBtn.classList.remove('rotated');
+      }
+    });
+  });
+</script>
+</body>
+</html>
