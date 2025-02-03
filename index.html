@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>zonne.ai</title>
+<title>⁶space.ai</title>
 <style>
   /* Global reset / base styling */
   * {
@@ -73,11 +73,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: -7.2px; /* keeps that subtle top alignment from your existing code */
+    margin-top: -7.2px; 
     z-index: 1;
   }
 
-  /* BRAND TEXT (zonne.ai) */
+  /* BRAND TEXT (⁶space.ai) */
   .logo {
     font-size: 1.2rem;
     font-weight: 500;
@@ -105,7 +105,7 @@
     transform: scale(1);
   }
 
-  /* Toggle icon container (no text). We'll build the + / X from two lines. */
+  /* Toggle icon container (+ / X) */
   .toggle {
     font-size: 1.5rem;
     cursor: pointer;
@@ -120,7 +120,7 @@
     transform-origin: center;
     transition: transform 0.3s ease, margin 0.3s ease;
     line-height: 0;
-    margin-right: -5px; /* Nudged to the right edge */
+    margin-right: -5px; 
   }
   .toggle::before {
     content: "";
@@ -166,7 +166,7 @@
     transform: translate(-50%, -50%) rotate(225deg);
   }
 
-  /* NAV LINKS (for small screens / expanded header) */
+  /* NAV LINKS (small screens) */
   .nav-links {
     width: 100%;
     margin-top: 10px; 
@@ -209,13 +209,10 @@
     opacity: 1;
   }
 
-  /*
-   * DUPLICATE NAV LINKS FOR DESKTOP
-   * Only visible on wide screens.
-   */
+  /* DUPLICATE NAV LINKS FOR DESKTOP */
   .nav-links-desktop {
-    display: none; /* Hidden by default */
-    gap: 30px;     /* Spacing between links */
+    display: none; 
+    gap: 30px;    
   }
   .nav-links-desktop a {
     color: #fff;
@@ -243,14 +240,12 @@
     opacity: 1;
   }
 
-  /* LANDING SECTION & IFRAME (Updated) */
+  /* LANDING SECTION & IFRAME */
   #landing {
     position: relative;
-    /* Fill the browser height so .landing-content can sit above the bottom initially */
     height: 100vh; 
-    padding: 0 0 60px;  /* Keep your original bottom padding if desired */
+    padding: 0 0 60px;  
   }
-  /* The iframe acts like a background here, absolutely spanning the entire #landing */
   .landing-iframe {
     position: absolute;
     top: 0; 
@@ -259,9 +254,6 @@
     height: 100%;
     border: none;
   }
-
-  /* Position the landing content at bottom:20px so it's 20px above the bottom
-     of #landing. It's absolute (not fixed), so it scrolls away as the user scrolls. */
   .landing-content {
     position: absolute;
     bottom: 100px;  
@@ -276,13 +268,12 @@
   .landing-content h1,
   .landing-content p {
     text-shadow: 0 3px 16px rgba(0,0,0,1);
-    text-align: center;  /* Keep your original center alignment */
+    text-align: center;
   }
   .landing-content h1 {
     font-weight: 700;
     margin-bottom: 1rem;
     font-size: clamp(2.2rem, 8vw, 2.9rem) !important; 
-    text-align: center; 
   }
   .landing-content p {
     line-height: 1.6;
@@ -338,7 +329,7 @@
     cursor: pointer;  
     user-select: none;
     border: 2.5px solid #FF4F00;
-    color: #FF4F00; /* Orange text by default */
+    color: #FF4F00; 
     background: transparent;
     font-size: 1rem;
   }
@@ -347,9 +338,7 @@
     color: #fff;        
   }
 
- 
-
-  /* OTHER SECTIONS (unchanged) */
+  /* Sections */
   .section {
     width: 100%;
     max-width: 640px;
@@ -357,8 +346,6 @@
     box-sizing: border-box;
     text-align: center;
   }
-
-  /* Put these overrides after your .section definition */
   #landing.section {
     max-width: 100% !important;
     margin: 0 !important;
@@ -368,7 +355,6 @@
     height: 100vh;
     overflow: hidden;
   }
-
   #landing-additional,
   #landing-more,
   #pricing,
@@ -407,9 +393,31 @@
     margin-top: 80px;
   }
   .pricing-card {
-    text-align: center; /* Changed to center align */
-    max-width: 300px;
-  }
+  text-align: center;
+  max-width: 640px;
+  padding: 30px;
+  border-radius: 25px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+  transition: background 0.3s ease;
+}
+
+.pricing-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: inherit;
+  background: linear-gradient(145deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 41%, rgba(255,255,255,0) 57%, rgba(255,255,255,0.4) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  padding: 1.4px;
+  pointer-events: none;
+}
+
   .pricing-card h3 {
     font-size: 1.8rem;
     margin-bottom: 1rem;
@@ -422,9 +430,9 @@
     line-height: 1.4;
   }
   .pricing-card .price {
-    font-size: 2.4rem;
+    font-size: 2.6rem;
     margin-bottom: 20px;
-    font-weight: 700;
+    font-weight: 500;
     color: #fff;
   }
 
@@ -467,7 +475,7 @@
     z-index: 2;
   }
 
-  /* Responsive Adjustments (small screens) */
+  /* Responsive Adjustments */
   @media (max-width: 768px) {
     .feedback-form {
       flex-direction: column;
@@ -481,23 +489,18 @@
       margin-left: 0 !important;
     }
   }
-
-  /* Larger screens: use nav-links-desktop, hide small-screen nav */
   @media (min-width: 700px) {
     .toggle {
       display: none !important;
     }
-    /* Hide small-screen nav */
     .nav-links {
       display: none !important;
     }
-    /* Show desktop nav in a row, right side */
     .nav-links-desktop {
       display: flex !important;
       align-items: center;
       justify-content: flex-end;
     }
-    /* Keep the header from expanding on large screens */
     .header {
       height: 50px !important;
       padding-bottom: 0 !important;
@@ -506,6 +509,11 @@
       height: 50px !important;
     }
   }
+
+  /* Create page iframes container */
+  .iframe-container {
+    margin-top: 40px;
+  }
 </style>
 </head>
 <body>
@@ -513,23 +521,23 @@
   <header class="header">
     <div class="header-top">
       <!-- Logo on the left -->
-      <div class="logo" onclick="showSection('landing')">zonne.ai</div>
+      <div class="logo" onclick="showSection('landing')">⁶space.ai</div>
 
-      <!-- Desktop nav on the right (hidden by default, visible on wide screens) -->
+      <!-- Desktop nav on the right -->
       <div class="nav-links-desktop">
         <a onclick="showSection('pricing')">Pricing</a>
         <a onclick="showSection('about')">About</a>
         <a onclick="showSection('create')">Create</a>
       </div>
 
-      <!-- Toggle (two lines forming +, rotate to ×) only visible on small screens -->
+      <!-- Toggle (+ / X) for small screens -->
       <div class="toggle" onclick="toggleMenu()">
         <span></span>
         <span></span>
       </div>
     </div>
 
-    <!-- Nav links for small screens (in expanded/collapsed menu) -->
+    <!-- Nav links for small screens -->
     <div class="nav-links">
       <a onclick="showSection('pricing')">Pricing</a>
       <a onclick="showSection('about')">About</a>
@@ -541,86 +549,105 @@
   <section class="section" id="landing">
     <iframe class="landing-iframe" src="https://hansenhomeai.github.io/WebbyDeerKnoll/"></iframe>
     <div class="landing-content">
-      <h1>Seamless exploration.</h1>
+      <h1>See more. Sell faster.</h1>
       <a onclick="showSection('create')" class="cta-button">Create your own</a>
-
     </div>
   </section>
 
-  <!-- REMAINING LANDING SECTIONS (unchanged) -->
+  <!-- LANDING-ADDITIONAL -->
   <section class="section" id="landing-additional">
-    <h2>Discover Luxury Properties at a Glance</h2>
-    <p>We’ve distilled the best of modern design aesthetics into our interface. With minimal distractions and effortless navigation, you can dive into rich, detailed visuals that replicate the feeling of physically touring the property.</p>
-    <p>From exclusive city-center penthouses to tranquil country estates, zonne.ai scales seamlessly, ensuring each listing retains its character and allure.</p>
+    <h2>Discover Real Estate That Puts Location First</h2>
+    <p>Real estate is all about location—yet most listings fail to truly capture it. Traditional photos and 3D tours show the interior, but they often miss the bigger picture: the context, the surroundings, and the feel of the space.</p>
+    <p>That’s where ⁶space.ai comes in. We make it effortless to turn aerial drone images into stunning, interactive 3D models—so buyers don’t just see a property, they experience it. No expensive equipment. No complicated software. Just clarity.</p>
   </section>
 
+  <!-- LANDING-MORE -->
   <section class="section" id="landing-more">
     <h2>Seamless Experience Across Devices</h2>
-    <p>Whether on a phone, tablet, or 4K monitor, enjoy consistent quality. Our adaptive design ensures your exploration remains fluid, intuitive, and visually stunning, anywhere you are.</p>
-    <p>And as real estate evolves, so do we. Anticipate frequent enhancements, deeper integrations, and cutting-edge tools that place you firmly in command of your property search journey.</p>
+    <p>Whether it’s on a phone, tablet, or desktop, ⁶space.ai keeps the experience smooth and visually striking. We adapt to every screen, so buyers can dive deep into any listing without friction.</p>
+    <p>And because the market never stops evolving, neither do we. Anticipate constant updates and new integrations that give you the edge in highlighting the one thing that truly matters: location.</p>
   </section>
 
-  <!-- Pricing Section -->
+  <!-- PRICING -->
   <section class="section hidden" id="pricing">
     <h1>Pricing</h1>
-    <p>Invest in lucidity. Our tiered plans support everyone from independent agents to major brokerages. Differentiate your listings, refine your brand, and step confidently into the future of real estate presentation.</p>
+    <p>Invest in clarity with our straightforward plans. Each model includes a 1-month free trial for the $29/mo hosting.</p>
     <div class="pricing-grid">
+     <!-- On-Site Visit Card -->
       <div class="pricing-card">
-        <h3>Starter</h3>
-        <p>Up to 5 property models/month. Ideal for solo agents making their mark.</p>
-        <div class="price">$99/mo</div>
-        <a onclick="showSection('create')" class="cta-button">Get Started</a>
+        <h2>On-Site Visit</h2>
+        <p>Our team comes to your property to capture everything in person.</p>
+        <div class="price">$1,200 </div>
+        <p>Then $29 per model / month after the free month.</p>
+        <a onclick="showSection('create')" class="cta-button">Create your model</a>
       </div>
+    
+      <!-- Remote Flight Card -->
       <div class="pricing-card">
-        <h3>Professional</h3>
-        <p>20 models/month, priority rendering, and custom branding. Elevate your portfolio effortlessly.</p>
-        <div class="price">$299/mo</div>
-        <a onclick="showSection('create')" class="cta-button">Upgrade Now</a>
+        <h2>Remote Flight</h2>
+        <p>We’ll guide your drone pilot remotely to capture the photos needed.</p>
+        <div class="price">$600 </div>
+        <p>Then $29 per model / month after the free month.</p>
+        <a onclick="showSection('create')" class="cta-button">Create your model</a>
       </div>
+
+
+      <!-- Enterprise Card -->
       <div class="pricing-card">
-        <h3>Enterprise</h3>
-        <p>Unlimited models, dedicated support, and AI insights. Ideal for large agencies and developers.</p>
-        <div class="price">Custom</div>
-        <a onclick="showSection('create')" class="cta-button">Contact Us</a>
+        <h2>Enterprise</h2>
+        <p>High-volume needs or special requirements? Let’s customize a plan for you.</p>
+        <a onclick="window.location.href='mailto:hello@hansenhome.ai?subject=Enterprise%20Inquiry&body=Hello%2C%20I%27m%20interested%20in%20learning%20more%20about%20Enterprise%20options%20at%20⁶space.ai.'" 
+           class="cta-button">Contact Us</a>
       </div>
     </div>
-    <p>All tiers include ongoing improvements, early access to VR/AR features, and our unwavering commitment to a flawless user experience.</p>
   </section>
 
-  <!-- About Section -->
+  <!-- ABOUT -->
   <section class="section hidden" id="about">
-    <h1>About zonne.ai</h1>
-    <p>zonne.ai was born from a vision to transcend traditional property listings. Melding drone technology with AI, we paint dynamic, interactive portraits of homes. Each model uncovers layers of detail that static images or flat videos can’t capture.</p>
-    <p>We focus on minimalism, authenticity, and empowerment...</p>
-    <!-- Additional About Content -->
-    <p>At zonne.ai, we harness advanced drone technology and proprietary AI to deliver immersive 3D property models that highlight what matters most: location. By capturing every angle from the sky, we seamlessly stitch together breathtaking point clouds that showcase each home’s layout and its surrounding area.</p>
-    <p>Our dedication to a premium and luxury-appealing design aesthetic ensures that both real estate professionals and prospective buyers can experience properties in a visually striking, intuitive interface. This emphasis on high-end presentation differentiates listings and conveys the true essence of each space.</p>
-    <p>As a growing startup, we blend recurring SaaS revenue models with an innovative approach to drone flights, 3D rendering, and AI-driven property insights. Our goal is to lock in partnerships and build a scalable, future-forward platform that continuously adapts to the evolving needs of real estate professionals worldwide.</p>
+    <h1>About ⁶space.ai</h1>
+    <p>Real estate is all about location—yet most listings fail to showcase it properly. Photos and 3D tours capture the inside of a home well, but they leave out what matters most: the context, the surroundings, the feel of the space.</p>
+    <p>That’s where ⁶space.ai comes in.</p>
   </section>
 
   <section class="section hidden" id="about-mission">
-    <h2>Our Mission</h2>
-    <p>We believe knowledge fosters confidence...</p>
+    <h2>How it works</h2>
+    <p>Plan your flight – A drone pilot generates a flight path right here on our platform.</p>
+    <p>Capture and upload – The drone follows the path, taking photos, which are then uploaded back to us.</p>
+    <p>Get your model – We process the images, and within 3 days, you receive a fully immersive 3D model straight to your inbox.</p>
+    <p>We make it effortless to turn aerial drone images into stunning, interactive 3D models—so buyers don’t just see a property, they experience it. No expensive equipment, no complicated software. Just clarity.</p>
   </section>
+  
+   <section class="section hidden" id="about-innovation">
+    <h2>Background</h2>
+    <p>After leaving his position as a property manager, 20 year old founder Gabriel Hansen started ⁶space.ai because he saw a massive gap between the way properties are marketed and what buyers actually care about. This is about solving a real problem in the simplest, most effective way.</p>
+    <p>Our mission is simple: Make the best property marketing.</p>  </section>
+  
 
-  <section class="section hidden" id="about-innovation">
-    <h2>Constant Innovation</h2>
-    <p>As we push forward, anticipate features that challenge the status quo...</p>
-  </section>
-
-  <!-- Create Section -->
+  <!-- CREATE -->
   <section class="section hidden" id="create">
     <h1>Create Your Space</h1>
-    <p>Transform listings with ease. Our streamlined workflow guides you from drone-captured imagery to a 3D model in minutes.</p>
-    <a class="cta-button">Start Creating</a>
+    <p>Transform listings with ease. Our streamlined workflow guides you from drone-captured imagery to a 3D model.</p>
+	<div>
+    <!-- Embedding the two steps as iframes -->
+    <div class="iframe-container">
+      <h2>Step 1: Plan Your Drone Flight</h2>
+      <iframe src="https://hansenhomeai.github.io/DronePathGeneratorFE/" style="width:100%; min-height:600px; border:none;"></iframe>
+    </div>
+    <div class="iframe-container">
+      <h2>Step 2: Upload Drone Photos</h2>
+      <iframe src="https://hansenhomeai.github.io/DronePhotoUploaderFE/" style="width:100%; min-height:600px; border:none;"></iframe>
+    </div>
+    </div>
   </section>
 
   <section class="section hidden" id="create-steps">
-    <h2>Simple Steps to Get Started</h2>
-    <p>1. Capture drone imagery...<br>2. Upload...<br>3. AI stitches 3D model...<br>4. Share...</p>
+    <div>
+      <h2>Step 3: Model Processing</h2>
+      <p>Sit tight—creating your model can take up to 3 days. We’ll send a fully immersive 3D tour straight to your inbox once it’s ready. If you run into any issues, just reach out using the feedback form below.</p>
+    </div>
   </section>
 
-  <!-- Feedback Section (above footer) -->
+  <!-- Feedback Section -->
   <div class="feedback-section">
     <form class="feedback-form" onsubmit="sendFeedback(event)">
       <input 
@@ -633,7 +660,7 @@
   </div>
 
   <footer>
-    © 2025 zonne.ai · All rights reserved
+    © 2025 ⁶space.ai · All rights reserved
   </footer>
 
 <script>
