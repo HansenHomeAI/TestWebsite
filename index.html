@@ -341,7 +341,7 @@
   /* Sections */
   .section {
     width: 100%;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
     box-sizing: border-box;
     text-align: center;
@@ -414,6 +414,16 @@
     }
   }
 
+
+@media (min-width: 640px) {
+  .two-col-section .two-col-content {
+    margin-left: 6%;
+    margin-right: 6%;
+  }
+}
+
+
+
   /* Pricing Cards */
   .pricing-grid {
     display: flex;
@@ -424,7 +434,8 @@
   }
   .pricing-card {
     text-align: center;
-    max-width: 640px;
+    max-width: 540px; /* Ensure all cards share the same width */
+    width: 100%; /* Maintain responsiveness */
     padding: 30px;
     border-radius: 25px;
     position: relative;
@@ -432,7 +443,12 @@
     backdrop-filter: blur(50px);
     -webkit-backdrop-filter: blur(50px);
     transition: background 0.3s ease;
-  }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
   .pricing-card::before {
     content: "";
     position: absolute;
@@ -610,9 +626,8 @@
     <div class="two-col-content">
       <h2>The future of property visualization.</h2>
       <div class="right-col">
-        <p>Standard drone photos show the exterior, but they’re just snapshots—flat and disconnected. Traditional 3D tours keep buyers stuck inside. But real estate is about more than just a house. It’s about where it sits, what’s around it, and how it all connects.</p>
-        <p>⁶space.ai creates interactive 3D models that let buyers experience a property’s location like never before. They can move around, explore the land, and see the surroundings in context—something no photo or video can match. This is the future of real estate visualization.</p>
-     </div>
+        <p>Photos and 3D tours only show parts of a property—never the full picture. ⁶space.ai creates interactive models that let buyers explore the land, surroundings, and location in a way no photo or video can match.</p>
+	</div>
     </div>
   </section>
   
@@ -621,8 +636,7 @@
     <div class="two-col-content">
       <h2>Effortless creation with your drone.</h2>
       <div class="right-col">
-        <p>Creating these vivid 3D experiences is simpler than you might think. Nearly anyone with a drone can capture and transform aerial imagery into a stunning digital model.</p>
-        <p>Our platform guides you through a seamless process—from snapping the right shots to automatically stitching them into a detailed, interactive display. No heavy software or expert-level tech required—just your drone, a few intuitive steps, and a new way to see the world.</p>
+		<p>Creating a 3D model is effortless. Our system lets your drone fly itself, capturing the perfect shots with zero skill required. Just upload the photos after and you'll receive the completed model straight to your inbox.</p>
       </div>
     </div>
   </section>
@@ -649,16 +663,18 @@
         <a onclick="showSection('create')" class="cta-button">Create your model</a>
       </div>
       <!-- Enterprise Card -->
-      <div class="pricing-card">
-        <h2>Enterprise</h2>
-        <p>High-volume needs or special requirements? Let’s customize a plan for you.</p>
-        <a 
-          onclick="window.location.href='mailto:hello@hansenhome.ai?subject=Enterprise%20Inquiry&body=Hello%2C%20I%27m%20interested%20in%20learning%20more%20about%20Enterprise%20options%20at%20⁶space.ai.'" 
-          class="cta-button"
-        >
-          Contact Us
-        </a>
-      </div>
+<div class="pricing-card">
+  <h2>Enterprise</h2>
+  <p>High-volume needs or special requirements? Let’s customize a plan for you.</p>
+  <div class="price"></div> <!-- Empty price div to maintain consistent structure -->
+  <a 
+    onclick="window.location.href='mailto:hello@hansenhome.ai?subject=Enterprise%20Inquiry&body=Hello%2C%20I%27m%20interested%20in%20learning%20more%20about%20Enterprise%20options%20at%20⁶space.ai.'" 
+    class="cta-button"
+  >
+    Contact Us
+  </a>
+</div>
+
     </div>
   </section>
 
