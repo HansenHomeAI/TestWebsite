@@ -30,7 +30,7 @@
     left: 50%; 
     transform: translateX(-50%);
     width: 90%;
-    max-width: 1200px;
+    max-width: 640px;
     height: 50px;
     border-radius: 25px;
     z-index: 999;
@@ -341,7 +341,7 @@
   /* Sections */
   .section {
     width: 100%;
-    max-width: 640px;
+    max-width: 800px;
     margin: 0 auto;
     box-sizing: border-box;
     text-align: center;
@@ -355,17 +355,21 @@
     height: 100vh;
     overflow: hidden;
   }
+
+  /* We apply padding to all sections below for consistent spacing */
   #landing-additional,
   #landing-more,
   #pricing,
   #about,
   #about-mission,
   #about-innovation,
-  #create,
-  #create-steps {
-    padding: 200px 20px 60px;
+  {
+    padding: 110px 20px 60px;
     position: relative;
   }
+  
+  
+
   .section h1 {
     font-weight: 500;
     margin-bottom: 1rem;
@@ -384,6 +388,32 @@
     font-size: 1.2rem;
   }
 
+  /* TWO-COLUMN STRATEGY FOR WIDER SCREENS */
+  .two-col-section .two-col-content {
+    /* Default: single column (centered) on smaller screens */
+    display: block;
+    text-align: center;
+  }
+  .two-col-section .two-col-content .right-col {
+    margin-top: 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .two-col-section .two-col-content {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2rem;
+      text-align: left;
+      align-items: start;
+    }
+    .two-col-section .two-col-content h1,
+    .two-col-section .two-col-content h2 {
+      margin-bottom: 1rem;
+    }
+    .two-col-section .two-col-content .right-col {
+      margin-top: 0;
+    }
+  }
+
   /* Pricing Cards */
   .pricing-grid {
     display: flex;
@@ -393,32 +423,30 @@
     margin-top: 80px;
   }
   .pricing-card {
-  text-align: center;
-  max-width: 640px;
-  padding: 30px;
-  border-radius: 25px;
-  position: relative;
-  background: rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(50px);
-  -webkit-backdrop-filter: blur(50px);
-  transition: background 0.3s ease;
-}
-
-.pricing-card::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  border-radius: inherit;
-  background: linear-gradient(145deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 41%, rgba(255,255,255,0) 57%, rgba(255,255,255,0.4) 100%);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  padding: 1.4px;
-  pointer-events: none;
-}
-
-  .pricing-card h3 {
+    text-align: center;
+    max-width: 640px;
+    padding: 30px;
+    border-radius: 25px;
+    position: relative;
+    background: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
+    transition: background 0.3s ease;
+  }
+  .pricing-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: inherit;
+    background: linear-gradient(145deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 41%, rgba(255,255,255,0) 57%, rgba(255,255,255,0.4) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 1.4px;
+    pointer-events: none;
+  }
+  .pricing-card h2 {
     font-size: 1.8rem;
     margin-bottom: 1rem;
     font-weight: 600;
@@ -514,6 +542,19 @@
   .iframe-container {
     margin-top: 40px;
   }
+  
+  /* Ensure About, Pricing, and Create start 35% from the top */
+#about, 
+#pricing, 
+#create {
+ 
+  flex-direction: column;
+  justify-content: center;
+  min-height: 65vh; /* Remaining height after 35% top margin */
+  margin-top: 15vh; /* Push the content down by 35% of viewport height */
+}
+
+  
 </style>
 </head>
 <body>
@@ -554,18 +595,26 @@
     </div>
   </section>
 
-  <!-- LANDING-ADDITIONAL -->
-  <section class="section" id="landing-additional">
-    <h2>Discover Real Estate That Puts Location First</h2>
-    <p>Real estate is all about location—yet most listings fail to truly capture it. Traditional photos and 3D tours show the interior, but they often miss the bigger picture: the context, the surroundings, and the feel of the space.</p>
-    <p>That’s where ⁶space.ai comes in. We make it effortless to turn aerial drone images into stunning, interactive 3D models—so buyers don’t just see a property, they experience it. No expensive equipment. No complicated software. Just clarity.</p>
+  <!-- LANDING-ADDITIONAL (two-column) -->
+  <section class="section two-col-section" id="landing-additional">
+    <div class="two-col-content">
+      <h2>Discover Real Estate That Puts Location First</h2>
+      <div class="right-col">
+        <p>Real estate is all about location—yet most listings fail to truly capture it. Traditional photos and 3D tours show the interior, but they often miss the bigger picture: the context, the surroundings, and the feel of the space.</p>
+        <p>That’s where ⁶space.ai comes in. We make it effortless to turn aerial drone images into stunning, interactive 3D models—so buyers don’t just see a property, they experience it. No expensive equipment. No complicated software. Just clarity.</p>
+      </div>
+    </div>
   </section>
 
-  <!-- LANDING-MORE -->
-  <section class="section" id="landing-more">
-    <h2>Seamless Experience Across Devices</h2>
-    <p>Whether it’s on a phone, tablet, or desktop, ⁶space.ai keeps the experience smooth and visually striking. We adapt to every screen, so buyers can dive deep into any listing without friction.</p>
-    <p>And because the market never stops evolving, neither do we. Anticipate constant updates and new integrations that give you the edge in highlighting the one thing that truly matters: location.</p>
+  <!-- LANDING-MORE (two-column) -->
+  <section class="section two-col-section" id="landing-more">
+    <div class="two-col-content">
+      <h2>Seamless Experience Across Devices</h2>
+      <div class="right-col">
+        <p>Whether it’s on a phone, tablet, or desktop, ⁶space.ai keeps the experience smooth and visually striking. We adapt to every screen, so buyers can dive deep into any listing without friction.</p>
+        <p>And because the market never stops evolving, neither do we. Anticipate constant updates and new integrations that give you the edge in highlighting the one thing that truly matters: location.</p>
+      </div>
+    </div>
   </section>
 
   <!-- PRICING -->
@@ -573,73 +622,87 @@
     <h1>Pricing</h1>
     <p>Invest in clarity with our straightforward plans. Each model includes a 1-month free trial for the $29/mo hosting.</p>
     <div class="pricing-grid">
-     <!-- On-Site Visit Card -->
+      <!-- On-Site Visit Card -->
       <div class="pricing-card">
         <h2>On-Site Visit</h2>
         <p>Our team comes to your property to capture everything in person.</p>
-        <div class="price">$1,200 </div>
+        <div class="price">$1,200</div>
         <p>Then $29 per model / month after the free month.</p>
         <a onclick="showSection('create')" class="cta-button">Create your model</a>
       </div>
-    
       <!-- Remote Flight Card -->
       <div class="pricing-card">
         <h2>Remote Flight</h2>
         <p>We’ll guide your drone pilot remotely to capture the photos needed.</p>
-        <div class="price">$600 </div>
+        <div class="price">$600</div>
         <p>Then $29 per model / month after the free month.</p>
         <a onclick="showSection('create')" class="cta-button">Create your model</a>
       </div>
-
-
       <!-- Enterprise Card -->
       <div class="pricing-card">
         <h2>Enterprise</h2>
         <p>High-volume needs or special requirements? Let’s customize a plan for you.</p>
-        <a onclick="window.location.href='mailto:hello@hansenhome.ai?subject=Enterprise%20Inquiry&body=Hello%2C%20I%27m%20interested%20in%20learning%20more%20about%20Enterprise%20options%20at%20⁶space.ai.'" 
-           class="cta-button">Contact Us</a>
+        <a 
+          onclick="window.location.href='mailto:hello@hansenhome.ai?subject=Enterprise%20Inquiry&body=Hello%2C%20I%27m%20interested%20in%20learning%20more%20about%20Enterprise%20options%20at%20⁶space.ai.'" 
+          class="cta-button"
+        >
+          Contact Us
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section class="section hidden" id="about">
-    <h1>About ⁶space.ai</h1>
-    <p>Real estate is all about location—yet most listings fail to showcase it properly. Photos and 3D tours capture the inside of a home well, but they leave out what matters most: the context, the surroundings, the feel of the space.</p>
-    <p>That’s where ⁶space.ai comes in.</p>
+  <!-- ABOUT (two-column) -->
+  <section class="section two-col-section hidden" id="about">
+      <h1>About ⁶space.ai</h1>
+      <div class="right-col">
+        <p>Real estate is all about location—yet most listings fail to showcase it properly. Photos and 3D tours capture the inside of a home well, but they leave out what matters most: the context, the surroundings, the feel of the space.</p>
+        <p>That’s where ⁶space.ai comes in.</p>
+      </div>
   </section>
 
-  <section class="section hidden" id="about-mission">
-    <h2>How it works</h2>
-    <p>Plan your flight – A drone pilot generates a flight path right here on our platform.</p>
-    <p>Capture and upload – The drone follows the path, taking photos, which are then uploaded back to us.</p>
-    <p>Get your model – We process the images, and within 3 days, you receive a fully immersive 3D model straight to your inbox.</p>
-    <p>We make it effortless to turn aerial drone images into stunning, interactive 3D models—so buyers don’t just see a property, they experience it. No expensive equipment, no complicated software. Just clarity.</p>
+  <!-- ABOUT-MISSION (two-column) -->
+  <section class="section two-col-section hidden" id="about-mission">
+    <div class="two-col-content">
+      <h2>How it works</h2>
+      <div class="right-col">
+        <p>Plan your flight – A drone pilot generates a flight path right here on our platform.</p>
+        <p>Capture and upload – The drone follows the path, taking photos, which are then uploaded back to us.</p>
+        <p>Get your model – We process the images, and within 3 days, you receive a fully immersive 3D model straight to your inbox.</p>
+        <p>We make it effortless to turn aerial drone images into stunning, interactive 3D models—so buyers don’t just see a property, they experience it. No expensive equipment, no complicated software. Just clarity.</p>
+      </div>
+    </div>
   </section>
-  
-   <section class="section hidden" id="about-innovation">
-    <h2>Background</h2>
-    <p>After leaving his position as a property manager, 20 year old founder Gabriel Hansen started ⁶space.ai because he saw a massive gap between the way properties are marketed and what buyers actually care about. This is about solving a real problem in the simplest, most effective way.</p>
-    <p>Our mission is simple: Make the best property marketing.</p>  </section>
-  
+
+  <!-- ABOUT-INNOVATION (two-column) -->
+  <section class="section two-col-section hidden" id="about-innovation">
+    <div class="two-col-content">
+      <h2>Background</h2>
+      <div class="right-col">
+        <p>After leaving his position as a property manager, 20 year old founder Gabriel Hansen started ⁶space.ai because he saw a massive gap between the way properties are marketed and what buyers actually care about. This is about solving a real problem in the simplest, most effective way.</p>
+        <p>Our mission is simple: Make the best property marketing.</p>
+      </div>
+    </div>
+  </section>
 
   <!-- CREATE -->
   <section class="section hidden" id="create">
     <h1>Create Your Space</h1>
     <p>Transform listings with ease. Our streamlined workflow guides you from drone-captured imagery to a 3D model.</p>
-	<div>
-    <!-- Embedding the two steps as iframes -->
-    <div class="iframe-container">
-      <h2>Step 1: Plan Your Drone Flight</h2>
-      <iframe src="https://hansenhomeai.github.io/DronePathGeneratorFE/" style="width:100%; min-height:600px; border:none;"></iframe>
-    </div>
-    <div class="iframe-container">
-      <h2>Step 2: Upload Drone Photos</h2>
-      <iframe src="https://hansenhomeai.github.io/DronePhotoUploaderFE/" style="width:100%; min-height:600px; border:none;"></iframe>
-    </div>
+
+    <div>
+      <div class="iframe-container">
+        <h2>Step 1: Plan Your Drone Flight</h2>
+        <iframe src="https://hansenhomeai.github.io/DronePathGeneratorFE/" style="width:100%; min-height:600px; border:none;"></iframe>
+      </div>
+      <div class="iframe-container">
+        <h2>Step 2: Upload Drone Photos</h2>
+        <iframe src="https://hansenhomeai.github.io/DronePhotoUploaderFE/" style="width:100%; min-height:600px; border:none;"></iframe>
+      </div>
     </div>
   </section>
 
+  <!-- CREATE-STEPS -->
   <section class="section hidden" id="create-steps">
     <div>
       <h2>Step 3: Model Processing</h2>
