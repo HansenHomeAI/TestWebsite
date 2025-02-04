@@ -359,6 +359,7 @@
   /* We apply padding to all sections below for consistent spacing */
   #landing-additional,
   #landing-more,
+  #landing-more2,
   #pricing,
   #about,
   #about-mission,
@@ -539,7 +540,7 @@
 
   /* Create page iframes container */
   .iframe-container {
-    margin-top: 40px;
+    margin-top: 80px;
   }
   
   /* Ensure About, Pricing, and Create start 35% from the top */
@@ -597,10 +598,9 @@
   <!-- LANDING-ADDITIONAL (two-column) -->
   <section class="section two-col-section" id="landing-additional">
     <div class="two-col-content">
-      <h2>Discover Real Estate That Puts Location First</h2>
+      <h2>See properties in their full context.</h2>
       <div class="right-col">
-        <p>Real estate is all about location—yet most listings fail to truly capture it. Traditional photos and 3D tours show the interior, but they often miss the bigger picture: the context, the surroundings, and the feel of the space.</p>
-        <p>That’s where ⁶space.ai comes in. We make it effortless to turn aerial drone images into stunning, interactive 3D models—so buyers don’t just see a property, they experience it. No expensive equipment. No complicated software. Just clarity.</p>
+        <p>We transform aerial drone images into interactive 3D models that capture not just a building, but its surroundings. Veiw a property as if you’re there—feeling the space, the neighborhood, and the natural flow around it. </p>
       </div>
     </div>
   </section>
@@ -608,10 +608,21 @@
   <!-- LANDING-MORE (two-column) -->
   <section class="section two-col-section" id="landing-more">
     <div class="two-col-content">
-      <h2>Seamless Experience Across Devices</h2>
+      <h2>The future of property visualization.</h2>
       <div class="right-col">
-        <p>Whether it’s on a phone, tablet, or desktop, ⁶space.ai keeps the experience smooth and visually striking. We adapt to every screen, so buyers can dive deep into any listing without friction.</p>
-        <p>And because the market never stops evolving, neither do we. Anticipate constant updates and new integrations that give you the edge in highlighting the one thing that truly matters: location.</p>
+        <p>Standard drone photos show the exterior, but they’re just snapshots—flat and disconnected. Traditional 3D tours keep buyers stuck inside. But real estate is about more than just a house. It’s about where it sits, what’s around it, and how it all connects.</p>
+        <p>⁶space.ai creates interactive 3D models that let buyers experience a property’s location like never before. They can move around, explore the land, and see the surroundings in context—something no photo or video can match. This is the future of real estate visualization.</p>
+     </div>
+    </div>
+  </section>
+  
+  <!-- LANDING-MORE2 (two-column) -->
+  <section class="section two-col-section" id="landing-more2">
+    <div class="two-col-content">
+      <h2>Effortless creation with your drone.</h2>
+      <div class="right-col">
+        <p>Creating these vivid 3D experiences is simpler than you might think. Nearly anyone with a drone can capture and transform aerial imagery into a stunning digital model.</p>
+        <p>Our platform guides you through a seamless process—from snapping the right shots to automatically stitching them into a detailed, interactive display. No heavy software or expert-level tech required—just your drone, a few intuitive steps, and a new way to see the world.</p>
       </div>
     </div>
   </section>
@@ -663,7 +674,7 @@
   <!-- ABOUT-MISSION (two-column) -->
   <section class="section two-col-section hidden" id="about-mission">
     <div class="two-col-content">
-      <h2>How it works</h2>
+      <h2>How it works.</h2>
       <div class="right-col">
         <p>Plan your flight – A drone pilot generates a flight path right here on our platform.</p>
         <p>Capture and upload – The drone follows the path, taking photos, which are then uploaded back to us.</p>
@@ -676,10 +687,10 @@
   <!-- ABOUT-INNOVATION (two-column) -->
   <section class="section two-col-section hidden" id="about-innovation">
     <div class="two-col-content">
-      <h2>Background</h2>
+      <h2>Bringing AI to real estate.</h2>
       <div class="right-col">
-        <p>After leaving his position as a property manager, 20 year old founder Gabriel Hansen started ⁶space.ai because he saw a massive gap between the way properties are marketed and what buyers actually care about. This is about solving a real problem in the simplest, most effective way.</p>
-        <p>Our mission is simple: Make the best property marketing.</p>
+        <p>Noticing firsthand how listings fail to capture what buyers actually care about, 20-year-old founder Gabriel Hansen set out to fix it. Teaching himself computer science from the ground up, he built ⁶space.ai—combining advances in neural networks with drone technology to create a whole new way to showcase real estate location. The name references 6 dimensions of movement through space (a term common among AR/VR communities), and pronounced sick-space it reflects exactly what it is: a sick, radical new way to immerse yourself in a location.</p>
+        <p>Our mission is simple: Make the best tool for property marketing.</p>
       </div>
     </div>
   </section>
@@ -692,11 +703,11 @@
     <div>
       <div class="iframe-container">
         <h2>Step 1: Plan Your Drone Flight</h2>
-        <iframe src="https://hansenhomeai.github.io/DronePathGeneratorFE/" style="width:100%; min-height:600px; border:none;"></iframe>
+        <iframe src="https://hansenhomeai.github.io/DronePathGeneratorFE/" style="width:100%; min-height:900px; border:none;"></iframe>
       </div>
       <div class="iframe-container">
         <h2>Step 2: Upload Drone Photos</h2>
-        <iframe src="https://hansenhomeai.github.io/DronePhotoUploaderFE/" style="width:100%; min-height:600px; border:none;"></iframe>
+        <iframe src="https://hansenhomeai.github.io/DronePhotoUploaderFE/" style="width:100%; min-height:900px; border:none;"></iframe>
       </div>
     </div>
   </section>
@@ -754,6 +765,8 @@
       document.getElementById('landing').classList.remove('hidden');
       document.getElementById('landing-additional').classList.remove('hidden');
       document.getElementById('landing-more').classList.remove('hidden');
+      document.getElementById('landing-more2').classList.remove('hidden');
+
     }
 
     // If the header is expanded, close it
