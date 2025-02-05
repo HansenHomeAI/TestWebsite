@@ -341,7 +341,7 @@
   /* Sections */
   .section {
     width: 100%;
-    max-width: 1000px;
+    max-width: 900px;
     margin: 0 auto;
     box-sizing: border-box;
     text-align: center;
@@ -570,6 +570,59 @@
   margin-top: 15vh; /* Push the content down by 35% of viewport height */
 }
 
+  .logo-carousel {
+    overflow: hidden;
+    background: transparent;
+    position: relative;
+    width: 100%;
+}
+
+.logos {
+    display: flex;
+    animation: scroll 88.2s linear infinite;
+}
+
+.logos img {
+    width: 250px;
+    height: auto;
+    margin: 0 20px;
+    opacity: 0.5;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-2940px);
+    }
+}
+
+.logo-carousel::before,
+.logo-carousel::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.logo-carousel::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(0,0,0,1), transparent);
+}
+
+.logo-carousel::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(0,0,0,1), transparent);
+}
+
+  .logo-carousel {
+    margin: 20px 0;
+}
+
   
 </style>
 </head>
@@ -611,12 +664,33 @@
     </div>
   </section>
 
+<!-- SCROLLING LOGO CAROUSEL -->
+<div class="logo-carousel">
+    <div class="logos">
+        <img src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/2.png?raw=true" alt="Customer 1 Logo">
+        <img src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/6.png?raw=true" alt="Customer 2 Logo">
+        <img src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/4.png?raw=true" alt="Customer 3 Logo">
+        <img src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/3.png?raw=true" alt="Customer 4 Logo">
+        <img src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/5.png?raw=true" alt="Customer 5 Logo">
+        <img src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/1.png?raw=true" alt="Customer 6 Logo">
+        <!-- Duplicate set of logos -->
+        <img src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/2.png?raw=true" alt="Customer 1 Logo">
+        <img src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/6.png?raw=true" alt="Customer 2 Logo">
+        <img src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/4.png?raw=true" alt="Customer 3 Logo">
+        <img src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/3.png?raw=true" alt="Customer 4 Logo">
+        <img src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/5.png?raw=true" alt="Customer 5 Logo">
+        <img src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/1.png?raw=true" alt="Customer 6 Logo">
+    </div>
+</div>
+
+
   <!-- LANDING-ADDITIONAL (two-column) -->
   <section class="section two-col-section" id="landing-additional">
     <div class="two-col-content">
       <h2>See properties in their full context.</h2>
       <div class="right-col">
         <p>We transform aerial drone images into interactive 3D models that capture not just a building, but its surroundings. Veiw a property as if you’re there—feeling the space, the neighborhood, and the natural flow around it. </p>
+        <a href="https://10716eforestcreekrd.hansentour.com" class="cta-button2" target="_blank">View property</a>
       </div>
     </div>
   </section>
@@ -627,6 +701,8 @@
       <h2>The future of property visualization.</h2>
       <div class="right-col">
         <p>Photos and 3D tours only show parts of a property—never the full picture. ⁶space.ai creates interactive models that let buyers explore the land, surroundings, and location in a way no photo or video can match.</p>
+	 <a href="https://dolan-road.hansentour.com" class="cta-button2" target="_blank">View property</a>
+
 	</div>
     </div>
   </section>
@@ -637,6 +713,8 @@
       <h2>Effortless creation with your drone.</h2>
       <div class="right-col">
 		<p>Creating a 3D model is effortless. Our system lets your drone fly itself, capturing the perfect shots with zero skill required. Just upload the photos after and you'll receive the completed model straight to your inbox.</p>
+         <a onclick="showSection('create')" class="cta-button2">Create your own</a>
+
       </div>
     </div>
   </section>
