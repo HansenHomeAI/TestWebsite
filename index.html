@@ -386,7 +386,7 @@
   }
   /* We reduce top padding of #landing-additional by ~25px to tighten the gap */
   #landing-additional {
-    padding: 85px 20px 60px; /* changed from 110px to 85px */
+    padding: 85px 20px 60px;
     position: relative;
   }
 
@@ -468,6 +468,7 @@
   }
   .pricing-card::before {
     content: "";
+    padding: 1.4px;
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     border-radius: inherit;
@@ -482,7 +483,6 @@
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-    padding: 1.4px;
     pointer-events: none;
   }
   .pricing-card h2 {
@@ -694,7 +694,7 @@
     max-width: 414px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* was 'top'; same visual effect */
+    justify-content: flex-start;
     padding: 20px;
     border-radius: 25px;
     position: relative;
@@ -793,7 +793,7 @@
     max-width: 814px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* was 'top'; same effect */
+    justify-content: flex-start;
     padding-top: 50px;
     padding-bottom: 50px;
     padding-left: 5vw;
@@ -821,8 +821,8 @@
     height: auto;
     margin: 0 17px;
     opacity: 1;
-    scale: 0.9; /* Original usage */
-    transform: scale(0.9); /* Standard fallback */
+    scale: 0.9;
+    transform: scale(0.9);
   }
   .stat-box2::before {
     content: "";
@@ -869,8 +869,18 @@
     width: 100%;
     background: transparent;
     pointer-events: auto;
-    z-index: 1; /* Above the iframe but below the landing text */
+    z-index: 1;
   }
+  
+  @media (hover: none) {
+    .disable-hover:hover::before {
+        opacity: 0 !important;
+        transform: scale(0.7) !important;
+    }
+  }
+
+  
+  
 </style>
 </head>
 <body>
@@ -940,7 +950,7 @@
     <div class="two-col-content">
       <h2>See properties in their full context.</h2>
       <div class="right-col">
-        <p>We transform aerial drone images into interactive 3D models that capture not just a building, but its surroundings. View a property as if you’re there—feeling the space, the neighborhood, and the natural flow around it.</p>
+        <p>We transform your aerial drone images into interactive 3D models that capture not just a building, but its surroundings. View your property as if you’re right there—feeling the neighborhood and natural flow around it.</p>
         <a href="https://10716eforestcreekrd.hansentour.com" class="cta-button2-fixed" target="_blank">View property</a>
       </div>
     </div>
@@ -971,7 +981,7 @@
     <div class="two-col-content">
       <h2>The future of property visualization.</h2>
       <div class="right-col">
-        <p>Photos and 3D tours only show parts of a property—never the full picture. ⁶space.ai creates interactive models that let buyers explore the land, surroundings, and location in a way <span class="inline-white">no photo or video can match.</span></p>
+        <p>Photos and 3D tours only show parts of a property—never the full picture. At ⁶space.ai, we create interactive models that let you explore the land, surroundings, and location in a way <span class="inline-white">no photo or video can match.</span></p>
         <a href="https://dolan-road.hansentour.com" class="cta-button2-fixed" target="_blank">View property</a>
       </div>
     </div>
@@ -982,7 +992,7 @@
     <div class="two-col-content">
       <h2>Effortless creation with your drone.</h2>
       <div class="right-col">
-        <p>Creating a 3D model is effortless. Our system lets your drone fly itself, capturing the perfect shots with zero skill required. Just upload the photos after and you'll receive the completed model straight to your inbox.</p>
+        <p>Creating your 3D model is effortless. Our system lets your drone fly itself, capturing the perfect shots with zero skill required. Simply upload your photos, and you’ll receive the completed model straight to your inbox.</p>
         <a onclick="showSection('create')" class="cta-button2-fixed">Create your own</a>
       </div>
     </div>
@@ -998,14 +1008,14 @@
 
   <!-- PRICING -->
   <section class="section hidden" id="pricing">
-    <h1>Pricing</h1>
+    <h1>Pricing.</h1>
     <p>Each model includes a 1-month free trial for the $29/mo hosting.</p>
     <div class="pricing-grid">
       <!-- On-Site Visit Card -->
       <div class="pricing-card">
-        <h2>On-Site Visit</h2>
+        <h2>On-site visit.</h2>
         <div class="price">$1,200</div>
-        <p>We visit your property in person and handle every step of the capture. Hosting continues at $29/month after your free first month.</p>
+        <p>We’ll visit your property in person and handle every step of the capture. Hosting continues at $29/month after your free first month.</p>
         <a
           onclick="window.location.href='mailto:hello@hansenhome.ai?subject=On-Site%20Visit%20Inquiry&body=Hello%2C%20I%27m%20interested%20in%20scheduling%20an%20on-site%20visit%20for%20⁶space.ai%20to%20capture%20my%20property%20and%20create%20a%203D%20model.'"
           class="cta-button"
@@ -1015,15 +1025,15 @@
       </div>
       <!-- Remote Flight Card -->
       <div class="pricing-card">
-        <h2>Remote Flight</h2>
+        <h2>Remote flight.</h2>
         <div class="price">$600</div>
-        <p>Your drone follows an automated flight path—no hassle, no extra gear. We handle training the neural network. Hosting continues at $29/month after your free first month.</p>
+        <p>Your drone follows an automated flight path—no hassle, no extra gear. We train the neural network and host the result. Hosting continues at $29/month after your free first month.</p>
         <a onclick="showSection('create')" class="cta-button">Create your model</a>
       </div>
       <!-- Enterprise Card -->
       <div class="pricing-card">
-        <h2>Custom</h2>
-        <p>High-volume or specialized projects? We'll create a tailored plan to meet your needs.</p>
+        <h2>Custom.</h2>
+        <p>High-volume or specialized projects? We’ll create a tailored plan to meet your needs.</p>
         <a
           onclick="window.location.href='mailto:hello@hansenhome.ai?subject=Custom%20Pricing%20Inquiry&body=Hello%2C%20I%27m%20interested%20in%20learning%20more%20about%20custom%20pricing%20options%20at%20⁶space.ai.'"
           class="cta-button"
@@ -1036,9 +1046,9 @@
 
   <!-- ABOUT (two-col) -->
   <section class="section two-col-section hidden" id="about">
-    <h1>About ⁶space.ai</h1>
+    <h1>About ⁶space.ai.</h1>
     <div class="right-col">
-      <p>Real estate is all about location—yet most listings fail to showcase it properly. Photos and 3D tours capture the inside of a home well, but they leave out what matters most: the context, the surroundings, the feel of the space.</p>
+      <p>Your real estate is all about location—yet most listings fail to showcase it properly. Photos and 3D tours capture the inside of a home well, but they leave out what matters most: the context, the surroundings, the feel of the space.</p>
       <p>That’s where ⁶space.ai comes in.</p>
     </div>
   </section>
@@ -1060,8 +1070,8 @@
     <div class="two-col-content">
       <h2>Bringing AI to real estate.</h2>
       <div class="right-col">
-        <p>Noticing firsthand how listings fail to capture what buyers actually care about, 20-year-old founder Gabriel Hansen set out to fix it. Teaching himself computer science from the ground up, he built ⁶space.ai—combining advances in neural networks with drone technology to create a whole new way to showcase real estate location. The name references <span class="inline-white">6 degrees of freedom</span> through space (a term common in AR/VR technology). Pronounced sick-space it reflects exactly what it is: a sick, radical new way to immerse yourself in a location.</p>
-        <p>Our mission is simple: Make the best tool for property marketing.</p>
+        <p>Noticing firsthand how listings fail to capture what you actually care about, 20-year-old founder Gabriel Hansen set out to fix it. Teaching himself computer science from the ground up, he built ⁶space.ai—combining advances in neural networks with drone technology to create a whole new way to showcase location. The name references <span class="inline-white">6 degrees of freedom</span> through space (a term common in AR/VR). Pronounced sick-space, it reflects exactly what it is: a sick, radical new way to immerse yourself in a location.</p>
+        <p>Our mission is simple: make the best tool for property marketing.</p>
       </div>
     </div>
   </section>
@@ -1069,15 +1079,15 @@
   <!-- CREATE -->
   <section class="section hidden" id="create">
     <h1>Create your space.</h1>
-    <p>Transform listings with ease. Our streamlined workflow guides you from drone-captured imagery to a 3D model.</p>
+    <p>Transform your listings with ease. Our streamlined workflow guides you from drone-captured imagery to a fully immersive 3D model.</p>
 
     <div>
       <div class="iframe-container">
-        <h2>Step 1: Plan your drone flight.</h2>
+        <h2>Step 1: plan your drone flight.</h2>
         <iframe src="https://hansenhomeai.github.io/DronePathGeneratorFE/" style="width:100%; min-height:900px; border:none;"></iframe>
       </div>
       <div class="iframe-container">
-        <h2>Step 2: Upload drone photos.</h2>
+        <h2>Step 2: upload drone photos.</h2>
         <iframe src="https://hansenhomeai.github.io/DronePhotoUploaderFE/" style="width:100%; min-height:700px; border:none;"></iframe>
       </div>
     </div>
@@ -1086,7 +1096,7 @@
   <!-- CREATE-STEPS -->
   <section class="section hidden" id="create-steps">
     <div>
-      <h2>Step 3: Model processing.</h2>
+      <h2>Step 3: model processing.</h2>
       <p>Sit tight—creating your model can take up to 3 days. We’ll send a fully immersive 3D tour straight to your inbox once it’s ready. If you run into any issues, just reach out using the feedback form below.</p>
     </div>
   </section>
@@ -1207,6 +1217,21 @@
       overlay.style.top = `${textBoxTop + textBoxHeight}px`;
     }
   }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    let hoverElements = document.querySelectorAll(".logo, .toggle, .nav-links a, .nav-links-desktop a, .cta-button, .cta-button2, .cta-button2-fixed");
+
+    hoverElements.forEach(element => {
+        element.addEventListener("touchstart", function () {
+            element.classList.add("disable-hover");
+            setTimeout(() => {
+                element.classList.remove("disable-hover");
+            }, 500); // Adjust timeout as needed (500ms works well)
+        });
+    });
+  });
+
+
 
   // Update overlay on load and resize
   window.addEventListener('load', updateIframeOverlay);
