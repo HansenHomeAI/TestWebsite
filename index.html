@@ -39,7 +39,7 @@
     overflow: hidden;
 
     /* Blur and gradient outline */
-    background: rgba(#FFFFFF, 0.15);
+    background: rgba(255, 255, 255, 0);
     backdrop-filter: blur(50px);
     -webkit-backdrop-filter: blur(50px);
 
@@ -52,8 +52,13 @@
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     border-radius: inherit;
-    background: linear-gradient(145deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 41%, 
-              rgba(255,255,255,0) 57%, rgba(255,255,255,0.4) 100%);
+    background: linear-gradient(
+      145deg,
+      rgba(255,255,255,0.4) 0%,
+      rgba(255,255,255,0) 41%,
+      rgba(255,255,255,0) 57%,
+      rgba(255,255,255,0.4) 100%
+    );
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -241,15 +246,12 @@
     opacity: 1;
   }
 
-/* Add a subtle shadow to header text (logo and both nav links) */
-.header .logo,
-.header .nav-links a,
-.header .nav-links-desktop a {
-  text-shadow: 0 1px 17px rgba(0, 0, 0, 0.57);
-}
-
-
-
+  /* Subtle shadow on header text */
+  .header .logo,
+  .header .nav-links a,
+  .header .nav-links-desktop a {
+    text-shadow: 0 1px 17px rgba(0, 0, 0, 0.57);
+  }
 
   /* LANDING SECTION & IFRAME */
   #landing {
@@ -404,11 +406,10 @@
     color: #737373;
     margin-bottom: 1.5rem;
     font-size: 1.2rem;
-    max-width: 88%; /* Matches the two-column section constraint */
+    max-width: 88%;
     margin-left: auto;
     margin-right: auto;
-}
-
+  }
 
   /* TWO-COLUMN STRATEGY FOR WIDER SCREENS */
   .two-col-section .two-col-content {
@@ -470,9 +471,13 @@
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     border-radius: inherit;
-    background: linear-gradient(145deg, rgba(255,255,255,0.4) 0%, 
-                rgba(255,255,255,0) 41%, rgba(255,255,255,0) 57%, 
-                rgba(255,255,255,0.4) 100%);
+    background: linear-gradient(
+      145deg,
+      rgba(255,255,255,0.4) 0%,
+      rgba(255,255,255,0) 41%,
+      rgba(255,255,255,0) 57%,
+      rgba(255,255,255,0.4) 100%
+    );
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -495,16 +500,18 @@
     font-size: 3.6rem;
     margin-bottom: 20px;
     font-weight: 500;
-    background: conic-gradient(from -40deg at 0% -50%, 
-    #E7621E 0%, 
-    #E7621E 15%, 
-    #D768C6 45%, 
-    #FF4F00 85%, 
-    #E7621E 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
+    background: conic-gradient(
+      from -40deg at 0% -50%,
+      #E7621E 0%,
+      #E7621E 15%,
+      #D768C6 45%,
+      #FF4F00 85%,
+      #E7621E 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
   }
 
   /* Feedback Section */
@@ -674,25 +681,20 @@
     gap: 40px;
     margin-top: 40px;
     justify-content: center;
-    align-items: center; 
-    /* Make all boxes the same height: */
     align-items: center;
   }
   @media (min-width: 750px) {
     .stats-grid {
       flex-direction: row;
-      align-items: stretch; 
+      align-items: stretch;
     }
   }
   .stat-box {
-   
-  width: 100%;         /* take up the full available width */
-  max-width: 414px;    /* but never exceed 280px */
-  /* keep your other properties as is */
- display: flex;
+    width: 100%;
+    max-width: 414px;
+    display: flex;
     flex-direction: column;
-    justify-content: top;
-
+    justify-content: flex-start; /* was 'top'; same visual effect */
     padding: 20px;
     border-radius: 25px;
     position: relative;
@@ -700,52 +702,57 @@
     text-align: left;
     backdrop-filter: blur(50px);
     -webkit-backdrop-filter: blur(50px);
-
-    /* Each box has a unique ANGULAR gradient with random colors in your range: */
-    /* For demonstration, we'll define three different backgrounds via nth-child. */
   }
   /* Variation for box #1 */
   .stat-box:nth-child(1) {
-    background: conic-gradient(from 120deg at -20% 74%, 
-    #FF4F00 0%, 
-    #EFEEE7 20%, 
-    #EFEEE7 40%, 
-    #CD70E4 80%, 
-    #FF4F00 100%,
-    opacity: 0.1);
+    background: conic-gradient(
+      from 120deg at -20% 74%,
+      #FF4F00 0%,
+      #EFEEE7 20%,
+      #EFEEE7 40%,
+      #CD70E4 80%,
+      #FF4F00 100%,
+      opacity: 0.1
+    );
   }
   /* Variation for box #2 */
   .stat-box:nth-child(2) {
-    background: conic-gradient(from 180deg at 0% 110%, 
-    #E7621E 0%, 
-    #E7621E 15%, 
-    #D768C6 45%, 
-    #FF4F00 85%, 
-    #E7621E 100%,
-    opacity: 0.1);
+    background: conic-gradient(
+      from 180deg at 0% 110%,
+      #E7621E 0%,
+      #E7621E 15%,
+      #D768C6 45%,
+      #FF4F00 85%,
+      #E7621E 100%,
+      opacity: 0.1
+    );
   }
   /* Variation for box #3 */
   .stat-box:nth-child(3) {
-    background: conic-gradient(from 270deg at 110% 0%, 
-    #CD70E4 0%, 
-    #CD70E4 25%, 
-    #E36281 50%, 
-    #FF4F00 75%, 
-    #CD70E4 100%,
-    opacity: 0.1);
+    background: conic-gradient(
+      from 270deg at 110% 0%,
+      #CD70E4 0%,
+      #CD70E4 25%,
+      #E36281 50%,
+      #FF4F00 75%,
+      #CD70E4 100%,
+      opacity: 0.1
+    );
   }
   .stat-box::before {
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     border-radius: inherit;
-    background: linear-gradient(145deg, rgba(255,255,255,0.4) 0%, 
-              rgba(255,255,255,0) 41%, rgba(255,255,255,0) 57%, 
-              rgba(255,255,255,0.4) 100%);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, 
-                  linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, 
-          linear-gradient(#fff 0 0);
+    background: linear-gradient(
+      145deg,
+      rgba(255,255,255,0.4) 0%,
+      rgba(255,255,255,0) 41%,
+      rgba(255,255,255,0) 57%,
+      rgba(255,255,255,0.4) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
@@ -755,41 +762,38 @@
     font-size: 5rem;
     margin-bottom: 5px;
     font-weight: 500;
-    background: conic-gradient(from -40deg at 0% -50%, 
-    #E7621E 0%, 
-    #E7621E 15%, 
-    #D768C6 45%, 
-    #FF4F00 85%, 
-    #E7621E 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
+    background: conic-gradient(
+      from -40deg at 0% -50%,
+      #E7621E 0%,
+      #E7621E 15%,
+      #D768C6 45%,
+      #FF4F00 85%,
+      #E7621E 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
   }
   .stat-box p {
     font-size: 1.1rem;
     line-height: 1.4;
     margin-bottom: 6px;
-    color: #fff; 
+    color: #fff;
   }
 
   .stats-source {
     color: #777;
     font-size: 0.9rem;
-    margin-top: 45px; 
+    margin-top: 45px;
   }
 
-
-
-.stat-box2 {
-   
-  width: 100%;         /* take up the full available width */
-  max-width: 814px;    /* but never exceed 280px */
-  /* keep your other properties as is */
- display: flex;
+  .stat-box2 {
+    width: 100%;
+    max-width: 814px;
+    display: flex;
     flex-direction: column;
-    justify-content: top;
-
+    justify-content: flex-start; /* was 'top'; same effect */
     padding-top: 50px;
     padding-bottom: 50px;
     padding-left: 5vw;
@@ -800,39 +804,40 @@
     text-align: left;
     backdrop-filter: blur(50px);
     -webkit-backdrop-filter: blur(50px);
-
-    /* Each box has a unique ANGULAR gradient with random colors in your range: */
-    /* For demonstration, we'll define three different backgrounds via nth-child. */
   }
   /* Variation for box #1 */
   .stat-box2:nth-child(1) {
-    background: conic-gradient(from 100deg at 50% 110%, 
-    #FF4F00 0%, 
-    #FF4F00 20%, 
-    #EFEEE7 40%, 
-    #CD70E4 80%, 
-    #FF4F00 100%);
+    background: conic-gradient(
+      from 100deg at 50% 110%,
+      #FF4F00 0%,
+      #FF4F00 20%,
+      #EFEEE7 40%,
+      #CD70E4 80%,
+      #FF4F00 100%
+    );
   }
-
-.stat-box2 img {
+  .stat-box2 img {
     width: auto;
     height: auto;
     margin: 0 17px;
     opacity: 1;
-    scale: 0.9;
-}
+    scale: 0.9; /* Original usage */
+    transform: scale(0.9); /* Standard fallback */
+  }
   .stat-box2::before {
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     border-radius: inherit;
-    background: linear-gradient(145deg, rgba(255,255,255,0.4) 0%, 
-              rgba(255,255,255,0) 41%, rgba(255,255,255,0) 57%, 
-              rgba(255,255,255,0.4) 100%);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, 
-                  linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, 
-          linear-gradient(#fff 0 0);
+    background: linear-gradient(
+      145deg,
+      rgba(255,255,255,0.4) 0%,
+      rgba(255,255,255,0) 41%,
+      rgba(255,255,255,0) 57%,
+      rgba(255,255,255,0.4) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
@@ -842,41 +847,30 @@
     font-size: 5rem;
     margin-bottom: 15px;
     font-weight: 500;
-    color: #fff; 
+    color: #fff;
   }
   .stat-box2 p {
     font-size: 1.1rem;
     line-height: 1.4;
     margin-bottom: 6px;
-    color: #fff; 
+    color: #fff;
+  }
+  .stat-box p {
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
   }
 
-  .stats-source {
-    color: #777;
-    font-size: 0.9rem;
-    margin-top: 45px; 
-  }
-
-.stat-box p {
-  max-width: none;
-  margin-left: 0;
-  margin-right: 0;
-}
-
-
-/* Invisible overlay to prevent accidental iframe interactions */
-#iframe-overlay {
+  /* Invisible overlay to prevent accidental iframe interactions */
+  #iframe-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     background: transparent;
-    pointer-events: auto; /* Ensures the overlay absorbs interaction */
+    pointer-events: auto;
     z-index: 1; /* Above the iframe but below the landing text */
-}
-
-
-
+  }
 </style>
 </head>
 <body>
@@ -912,7 +906,7 @@
   <section class="section" id="landing">
     <iframe class="landing-iframe" src="https://hansenhomeai.github.io/WebbyDeerKnoll/"></iframe>
     <!-- Invisible Overlay to prevent unintended interactions -->
-	<div id="iframe-overlay"></div>
+    <div id="iframe-overlay"></div>
     <div class="landing-content">
       <h1>Captivate buyers.</h1>
       <a onclick="showSection('create')" class="cta-button">Create your own</a>
@@ -931,13 +925,13 @@
         <img loading="lazy" src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/MullinRealEstate2.png?raw=true" alt="Customer 9 Logo">
         <img loading="lazy" src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/5.png?raw=true" alt="Customer 5 Logo">
         <img loading="lazy" src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/1.png?raw=true" alt="Customer 6 Logo">      
-        
+
         <img loading="lazy" src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/2.png?raw=true" alt="Customer 1 Logo">
         <img loading="lazy" src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/6.png?raw=true" alt="Customer 2 Logo">
         <img loading="lazy" src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/4.png?raw=true" alt="Customer 3 Logo">
         <img loading="lazy" src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/MirrRanchGroup2.png?raw=true" alt="Customer 7 Logo">
         <img loading="lazy" src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/3.png?raw=true" alt="Customer 4 Logo">
-        </div>
+      </div>
     </div>
   </section>
 
@@ -946,7 +940,7 @@
     <div class="two-col-content">
       <h2>See properties in their full context.</h2>
       <div class="right-col">
-        <p>We transform aerial drone images into interactive 3D models that capture not just a building, but its surroundings. Veiw a property as if you’re there—feeling the space, the neighborhood, and the natural flow around it.</p>
+        <p>We transform aerial drone images into interactive 3D models that capture not just a building, but its surroundings. View a property as if you’re there—feeling the space, the neighborhood, and the natural flow around it.</p>
         <a href="https://10716eforestcreekrd.hansentour.com" class="cta-button2-fixed" target="_blank">View property</a>
       </div>
     </div>
@@ -983,7 +977,6 @@
     </div>
   </section>
 
-
   <!-- LANDING-MORE2 (two-col) -->
   <section class="section two-col-section hidden" id="landing-more2">
     <div class="two-col-content">
@@ -995,14 +988,13 @@
     </div>
   </section>
 
-
- <section class="section hidden" id="landing-stats2">
+  <section class="section hidden" id="landing-stats2">
     <div class="stats-grid">
       <div class="stat-box2">
         <img src="https://raw.githubusercontent.com/HansenHomeAI/6SpaceLogos/refs/heads/main/White6SpaceFullLogo.svg" alt="Customer 6 Logo">
       </div>
+    </div>
   </section>
-
 
   <!-- PRICING -->
   <section class="section hidden" id="pricing">
@@ -1014,8 +1006,8 @@
         <h2>On-Site Visit</h2>
         <div class="price">$1,200</div>
         <p>We visit your property in person and handle every step of the capture. Hosting continues at $29/month after your free first month.</p>
-       <a
-          onclick="window.location.href='mailto:hello@hansenhome.ai?subject=On-Site%20Visit%20Inquiry&body=Hello%2C%20I%27m%20interested%20in%20scheduling%20an%20on-site%20visit%20for%20⁶space.ai%20to%20capture%20my%20property%20and%20create%20a%203D%20model.'"  
+        <a
+          onclick="window.location.href='mailto:hello@hansenhome.ai?subject=On-Site%20Visit%20Inquiry&body=Hello%2C%20I%27m%20interested%20in%20scheduling%20an%20on-site%20visit%20for%20⁶space.ai%20to%20capture%20my%20property%20and%20create%20a%203D%20model.'"
           class="cta-button"
         >
           Contact Us
@@ -1033,7 +1025,7 @@
         <h2>Custom</h2>
         <p>High-volume or specialized projects? We'll create a tailored plan to meet your needs.</p>
         <a
-		  onclick="window.location.href='mailto:hello@hansenhome.ai?subject=Custom%20Pricing%20Inquiry&body=Hello%2C%20I%27m%20interested%20in%20learning%20more%20about%20custom%20pricing%20options%20at%20⁶space.ai.'"
+          onclick="window.location.href='mailto:hello@hansenhome.ai?subject=Custom%20Pricing%20Inquiry&body=Hello%2C%20I%27m%20interested%20in%20learning%20more%20about%20custom%20pricing%20options%20at%20⁶space.ai.'"
           class="cta-button"
         >
           Contact Us
@@ -1124,7 +1116,7 @@
     toggleBtn.classList.toggle('rotated');
   }
 
-function showSection(sectionId) {
+  function showSection(sectionId) {
     const allSections = document.querySelectorAll('section[id]');
     const header = document.querySelector('.header');
     const toggleBtn = header.querySelector('.toggle');
@@ -1134,30 +1126,30 @@ function showSection(sectionId) {
     allSections.forEach(sec => sec.classList.add('hidden'));
 
     if (sectionId === 'pricing') {
-        document.getElementById('pricing').classList.remove('hidden');
+      document.getElementById('pricing').classList.remove('hidden');
     } else if (sectionId === 'about') {
-        document.getElementById('about').classList.remove('hidden');
-        document.getElementById('about-mission').classList.remove('hidden');
-        document.getElementById('about-innovation').classList.remove('hidden');
+      document.getElementById('about').classList.remove('hidden');
+      document.getElementById('about-mission').classList.remove('hidden');
+      document.getElementById('about-innovation').classList.remove('hidden');
     } else if (sectionId === 'create') {
-        document.getElementById('create').classList.remove('hidden');
-        document.getElementById('create-steps').classList.remove('hidden');
+      document.getElementById('create').classList.remove('hidden');
+      document.getElementById('create-steps').classList.remove('hidden');
     } else {
-        // Default: show landing sections
-        document.getElementById('landing').classList.remove('hidden');
-        document.getElementById('landing-carousel').classList.remove('hidden');
-        document.getElementById('landing-additional').classList.remove('hidden');
-        document.getElementById('landing-stats').classList.remove('hidden');
-        document.getElementById('landing-stats2').classList.remove('hidden');
-        document.getElementById('landing-more').classList.remove('hidden');
-        document.getElementById('landing-more2').classList.remove('hidden');
+      // Default: show landing sections
+      document.getElementById('landing').classList.remove('hidden');
+      document.getElementById('landing-carousel').classList.remove('hidden');
+      document.getElementById('landing-additional').classList.remove('hidden');
+      document.getElementById('landing-stats').classList.remove('hidden');
+      document.getElementById('landing-stats2').classList.remove('hidden');
+      document.getElementById('landing-more').classList.remove('hidden');
+      document.getElementById('landing-more2').classList.remove('hidden');
     }
 
     // If the landing page is not active, remove the iframe src (to unload it)
     if (sectionId !== 'landing') {
-        landingIframe.src = ""; // Unload the iframe
+      landingIframe.src = "";
     } else {
-        landingIframe.src = "https://hansenhomeai.github.io/WebbyDeerKnoll/"; // Reload iframe
+      landingIframe.src = "https://hansenhomeai.github.io/WebbyDeerKnoll/";
     }
 
     // Scroll to the top of the page when switching sections
@@ -1165,11 +1157,10 @@ function showSection(sectionId) {
 
     // If the header is expanded, close it
     if (header.classList.contains('expanded')) {
-        header.classList.remove('expanded');
-        toggleBtn.classList.remove('rotated');
+      header.classList.remove('expanded');
+      toggleBtn.classList.remove('rotated');
     }
-}
-
+  }
 
   function sendFeedback(e) {
     e.preventDefault();
@@ -1205,26 +1196,21 @@ function showSection(sectionId) {
     }, 2000);
   }
 
-
-function updateIframeOverlay() {
+  function updateIframeOverlay() {
     const textBox = document.querySelector('.landing-content');
     const overlay = document.getElementById('iframe-overlay');
-    
+
     if (textBox && overlay) {
-        const textBoxHeight = textBox.offsetHeight;
-        const textBoxTop = textBox.offsetTop;
-        
-        overlay.style.height = `calc(100vh - ${textBoxTop + textBoxHeight}px)`;
-        overlay.style.top = `${textBoxTop + textBoxHeight}px`;
+      const textBoxHeight = textBox.offsetHeight;
+      const textBoxTop = textBox.offsetTop;
+      overlay.style.height = `calc(100vh - ${textBoxTop + textBoxHeight}px)`;
+      overlay.style.top = `${textBoxTop + textBoxHeight}px`;
     }
-}
+  }
 
-// Update overlay on load and resize
-window.addEventListener('load', updateIframeOverlay);
-window.addEventListener('resize', updateIframeOverlay);
-
-
-
+  // Update overlay on load and resize
+  window.addEventListener('load', updateIframeOverlay);
+  window.addEventListener('resize', updateIframeOverlay);
 
   document.addEventListener('DOMContentLoaded', () => {
     showSection('landing');
