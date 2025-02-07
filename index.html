@@ -241,6 +241,16 @@
     opacity: 1;
   }
 
+/* Add a subtle shadow to header text (logo and both nav links) */
+.header .logo,
+.header .nav-links a,
+.header .nav-links-desktop a {
+  text-shadow: 0 1px 17px rgba(0, 0, 0, 0.57);
+}
+
+
+
+
   /* LANDING SECTION & IFRAME */
   #landing {
     position: relative;
@@ -394,7 +404,11 @@
     color: #737373;
     margin-bottom: 1.5rem;
     font-size: 1.2rem;
-  }
+    max-width: 88%; /* Matches the two-column section constraint */
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
   /* TWO-COLUMN STRATEGY FOR WIDER SCREENS */
   .two-col-section .two-col-content {
@@ -595,8 +609,8 @@
     animation: scroll 44.1s linear infinite;
   }
   .logos img {
-    width: 250px;
-    height: auto;
+    width: auto;
+    height: 60px;
     margin: 0 17px;
     opacity: 0.5;
   }
@@ -605,7 +619,7 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-979px);
+      transform: translateX(-1500px);
     }
   }
   .logo-carousel::before,
@@ -843,8 +857,23 @@
     margin-top: 45px; 
   }
 
+.stat-box p {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
 
 
+/* Invisible overlay to prevent accidental iframe interactions */
+#iframe-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: transparent;
+    pointer-events: auto; /* Ensures the overlay absorbs interaction */
+    z-index: 1; /* Above the iframe but below the landing text */
+}
 
 
 
@@ -882,8 +911,10 @@
   <!-- LANDING SECTION -->
   <section class="section" id="landing">
     <iframe class="landing-iframe" src="https://hansenhomeai.github.io/WebbyDeerKnoll/"></iframe>
+    <!-- Invisible Overlay to prevent unintended interactions -->
+	<div id="iframe-overlay"></div>
     <div class="landing-content">
-      <h1>See more. Sell faster.</h1>
+      <h1>Captivate buyers.</h1>
       <a onclick="showSection('create')" class="cta-button">Create your own</a>
     </div>
   </section>
@@ -895,10 +926,18 @@
         <img src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/2.png?raw=true" alt="Customer 1 Logo">
         <img src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/6.png?raw=true" alt="Customer 2 Logo">
         <img src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/4.png?raw=true" alt="Customer 3 Logo">
-        <img src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/3.png?raw=true" alt="Customer 4 Logo">
-        <img src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/5.png?raw=true" alt="Customer 5 Logo">
-        <img src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/1.png?raw=true" alt="Customer 6 Logo">
-      </div>
+        <img src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/MirrRanchGroup2.png?raw=true" alt="Customer 7 Logo">
+        <img loading="lazy" src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/3.png?raw=true" alt="Customer 4 Logo">
+        <img loading="lazy" src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/MullinRealEstate2.png?raw=true" alt="Customer 9 Logo">
+        <img loading="lazy" src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/5.png?raw=true" alt="Customer 5 Logo">
+        <img loading="lazy" src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/1.png?raw=true" alt="Customer 6 Logo">      
+        
+        <img loading="lazy" src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/2.png?raw=true" alt="Customer 1 Logo">
+        <img loading="lazy" src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/6.png?raw=true" alt="Customer 2 Logo">
+        <img loading="lazy" src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/4.png?raw=true" alt="Customer 3 Logo">
+        <img loading="lazy" src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/MirrRanchGroup2.png?raw=true" alt="Customer 7 Logo">
+        <img loading="lazy" src="https://github.com/HansenHomeAI/Customer-Logos/blob/main/3.png?raw=true" alt="Customer 4 Logo">
+        </div>
     </div>
   </section>
 
@@ -1085,38 +1124,52 @@
     toggleBtn.classList.toggle('rotated');
   }
 
-  function showSection(sectionId) {
+function showSection(sectionId) {
     const allSections = document.querySelectorAll('section[id]');
     const header = document.querySelector('.header');
     const toggleBtn = header.querySelector('.toggle');
+    const landingIframe = document.querySelector('.landing-iframe');
+
+    // Hide all sections
     allSections.forEach(sec => sec.classList.add('hidden'));
 
     if (sectionId === 'pricing') {
-      document.getElementById('pricing').classList.remove('hidden');
+        document.getElementById('pricing').classList.remove('hidden');
     } else if (sectionId === 'about') {
-      document.getElementById('about').classList.remove('hidden');
-      document.getElementById('about-mission').classList.remove('hidden');
-      document.getElementById('about-innovation').classList.remove('hidden');
+        document.getElementById('about').classList.remove('hidden');
+        document.getElementById('about-mission').classList.remove('hidden');
+        document.getElementById('about-innovation').classList.remove('hidden');
     } else if (sectionId === 'create') {
-      document.getElementById('create').classList.remove('hidden');
-      document.getElementById('create-steps').classList.remove('hidden');
+        document.getElementById('create').classList.remove('hidden');
+        document.getElementById('create-steps').classList.remove('hidden');
     } else {
-      // Default: show landing sections
-      document.getElementById('landing').classList.remove('hidden');
-      document.getElementById('landing-carousel').classList.remove('hidden');
-      document.getElementById('landing-additional').classList.remove('hidden');
-      document.getElementById('landing-stats').classList.remove('hidden');
-      document.getElementById('landing-stats2').classList.remove('hidden');
-      document.getElementById('landing-more').classList.remove('hidden');
-      document.getElementById('landing-more2').classList.remove('hidden');
+        // Default: show landing sections
+        document.getElementById('landing').classList.remove('hidden');
+        document.getElementById('landing-carousel').classList.remove('hidden');
+        document.getElementById('landing-additional').classList.remove('hidden');
+        document.getElementById('landing-stats').classList.remove('hidden');
+        document.getElementById('landing-stats2').classList.remove('hidden');
+        document.getElementById('landing-more').classList.remove('hidden');
+        document.getElementById('landing-more2').classList.remove('hidden');
     }
+
+    // If the landing page is not active, remove the iframe src (to unload it)
+    if (sectionId !== 'landing') {
+        landingIframe.src = ""; // Unload the iframe
+    } else {
+        landingIframe.src = "https://hansenhomeai.github.io/WebbyDeerKnoll/"; // Reload iframe
+    }
+
+    // Scroll to the top of the page when switching sections
+    window.scrollTo(0, 0);
 
     // If the header is expanded, close it
     if (header.classList.contains('expanded')) {
-      header.classList.remove('expanded');
-      toggleBtn.classList.remove('rotated');
+        header.classList.remove('expanded');
+        toggleBtn.classList.remove('rotated');
     }
-  }
+}
+
 
   function sendFeedback(e) {
     e.preventDefault();
@@ -1151,6 +1204,27 @@
       button.textContent = originalText;
     }, 2000);
   }
+
+
+function updateIframeOverlay() {
+    const textBox = document.querySelector('.landing-content');
+    const overlay = document.getElementById('iframe-overlay');
+    
+    if (textBox && overlay) {
+        const textBoxHeight = textBox.offsetHeight;
+        const textBoxTop = textBox.offsetTop;
+        
+        overlay.style.height = `calc(100vh - ${textBoxTop + textBoxHeight}px)`;
+        overlay.style.top = `${textBoxTop + textBoxHeight}px`;
+    }
+}
+
+// Update overlay on load and resize
+window.addEventListener('load', updateIframeOverlay);
+window.addEventListener('resize', updateIframeOverlay);
+
+
+
 
   document.addEventListener('DOMContentLoaded', () => {
     showSection('landing');
